@@ -81,7 +81,7 @@ npx playwright test --config qa/playwright.config.mjs
 
 逐像素对比对渲染环境（OS / 字体栈 / 抗锯齿）敏感。**基准快照以官方
 Playwright 容器为权威**：CI 的视觉回归 job 跑在
-`mcr.microsoft.com/playwright:v1.59.0-noble` 容器里，渲染环境固定。
+`mcr.microsoft.com/playwright:v1.61.0-noble` 容器里，渲染环境固定。
 
 - 在**本机**重写的基准，可能与 CI 容器有亚像素差异。最稳的更新基准方式是
   **走 CI 的手动重写**（见下）。

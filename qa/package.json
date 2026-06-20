@@ -12,6 +12,6 @@
     "qa": "npm run check:tokens && npm run test:visual"
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.0"
+    "@playwright/test": "1.61.0"
   }
 }

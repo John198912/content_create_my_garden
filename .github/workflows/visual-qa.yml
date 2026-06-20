@@ -56,13 +56,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: token-baseline
     container:
-      image: mcr.microsoft.com/playwright:v1.59.0-noble
+      # ↑ 镜像 tag 必须与 qa/package.json 的 @playwright/test 版本对齐
+      #   （容器已烘好对应版本的浏览器在 /ms-playwright，无需再装）。
+      image: mcr.microsoft.com/playwright:v1.61.0-noble
+    env:
+      # 用容器预装的浏览器，不走 npm 运行时下载
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
     steps:
       - uses: actions/checkout@v4
 
-      - name: 安装 QA 依赖
+      - name: 安装 QA 依赖（不装浏览器，用容器预装）
         working-directory: qa
-        run: npm ci || npm install --no-audit --no-fund
+        run: npm ci
 
       - name: 视觉回归对比（或按需重写基准）
         working-directory: qa
